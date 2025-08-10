@@ -1,20 +1,20 @@
-<nav style="background-color: #F79B72" class="navbar navbar-expand-sm mb-5">
+<nav style="background-color: #F79B72" class="navbar navbar-expand-lg navbar-dark hand-writing">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Logo</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse align-right" id="collapsibleNavbar">
-            <ul class="navbar-nav ">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Link</a></li>
-                        <li><a class="dropdown-item" href="#">Another link</a></li>
-                        <li><a class="dropdown-item" href="#">A third link</a></li>
-                    </ul>
-                </li>
+        <!-- سمت راست: اسم سایت -->
+        <a class="navbar-brand text-dark" href="#">Interesting facts about the world</a>
+
+        <!-- سمت چپ: Dropdown -->
+        <div class="dropdown ms-auto me-3">
+            <button style="background-color:#F79B72 " class="btn  dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                username <i class="bi bi-person-fill"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#">my profile <i class="bi bi-person-circle"></i></a></li>
+                <li><a class="dropdown-item" href="#">saved massages <i class="bi bi-bookmark-fill"></i></a></li>
+                <li><a class="dropdown-item" href="#">logout <i class="bi-box-arrow-right"></i></a></li>
             </ul>
         </div>
     </div>
 </nav>
+
