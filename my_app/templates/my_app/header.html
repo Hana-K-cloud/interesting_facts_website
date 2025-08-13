@@ -5,15 +5,35 @@
 
         <!-- سمت چپ: Dropdown -->
         <div class="dropdown ms-auto me-3">
-            <button style="background-color:#F79B72 " class="btn  dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                username <i class="bi bi-person-fill"></i>
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#">my profile <i class="bi bi-person-circle"></i></a></li>
-                <li><a class="dropdown-item" href="#">saved massages <i class="bi bi-bookmark-fill"></i></a></li>
-                <li><a class="dropdown-item" href="#">logout <i class="bi-box-arrow-right"></i></a></li>
-            </ul>
+            {% if user.is_authenticated %}
+                <button style="background-color:#F79B72 " class="btn  dropdown-toggle" type="button"
+                        id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    {{ user.username }} <i class="bi bi-person-fill"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">my profile <i class="bi bi-person-circle"></i></a></li>
+                    <li><a class="dropdown-item" href="#">saved massages <i class="bi bi-bookmark-fill"></i></a></li>
+                    <li>
+                        <form class="dropdown-item " method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button class="p-0 border-0 bg-white text-dark" type="submit">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            {% else %}
+                <button style="background-color:#F79B72 " class="btn  dropdown-toggle" type="button"
+                        id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                    login/signup <i class="bi bi-person-fill"></i>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="{% url 'login' %}">login <i class="bi bi-person-circle"></i></a>
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'signup' %}">signup <i class="bi bi-bookmark-fill"></i></a>
+                    </li>
+                </ul>
+            {% endif %}
         </div>
     </div>
 </nav>
