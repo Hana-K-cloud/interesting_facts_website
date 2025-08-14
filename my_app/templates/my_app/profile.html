@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my_profile</title>
+    <link rel="stylesheet" href="{% static 'my_app/bootstrap/css/min.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="{% static 'my_app/bootstrap/js/min.js' %}"></script>
+    <script src="{% static 'my_app/bootstrap/js/bundle.min.js' %}"></script>
+    <style>
+        .hand-writing {
+            font-family: cursive;
+        }
+
+        .quote-container {
+            height: 560px; /* ارتفاع ناحیه نمایش */
+            overflow-y: auto; /* فعال کردن اسکرول عمودی */
+            padding-right: 10px;
+        }
+
+        .quote-box {
+            background-color: #EEEEEE;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .quote-icon {
+            font-size: 30px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .quote-author {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+{% include 'my_app/header.html' %}
+<div>this is my profile</div>
+<div class=" mt-4 mb-5 container">
+    <div class="row">
+        <div  class="col-md-4 hand-writing">
+            <h2>we are here to learn super super fun facts about the world,fun hacks and ...</h2><br>
+            <h2>join us and share your own experience with everyone</h2></div>
+        <div class="col-md-8">
+            <div class="quote-container">
+
+                <div class="quote-box">
+                    <pre  class="mt-3 hand-writing">Genius is one percent inspiration and ninety-nine percent perspiration.</pre>
+                    <hr class="bg-secondary border-2 border-top border-secondary my-3">
+                    <div class="row">
+                        <div class="quote-author col-10 hand-writing">Thomas Edison</div>
+
+                        <a class="col-2">
+                            <button type="button" class="btn">
+                                <i style="color: #a7acb1" class="bi bi-bookmark"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="quote-box">
+                    The only way to do great work is to love what you do.
+                    <div class="quote-author">Steve Jobs</div>
+                </div>
+
+                <div class="quote-box">
+                    <span class="quote-icon">❝</span>
+                    Success is not final, failure is not fatal: it is the courage to continue that counts.
+                    <div class="quote-author">Winston Churchill</div>
+                </div>
+
+                <div class="quote-box">
+                    <span class="quote-icon">❝</span>
+                    Believe you can and you're halfway there.
+                    <div class="quote-author">Theodore Roosevelt</div>
+                </div>
+
+                <div class="quote-box">
+                    <span class="quote-icon">❝</span>
+                    Don't watch the clock; do what it does. Keep going.
+                    <div class="quote-author">Sam Levenson</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'my_app/footer.html' %}
+</body>
+</html>
