@@ -1,11 +1,13 @@
 from django.contrib.auth import authenticate, login, logout
 from .form import SignupForm
 from django.shortcuts import render, redirect
+from.models import Fact
 
 
 # Create your views here.
 def home(request):
-    return render(request, 'my_app/index.html')
+    facts = Fact.objects.all()
+    return render(request, 'my_app/index.html',{'facts':facts})
 
 
 def signup(request):
