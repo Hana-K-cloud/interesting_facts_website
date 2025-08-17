@@ -49,7 +49,12 @@
     <div class="row">
         <div class="col-md-4 hand-writing">
             <h2>we are here to learn super super fun facts about the world,fun hacks and ...</h2><br>
-            <h2>join us and share your own experience with everyone</h2></div>
+            <h2>join us and share your own experience with everyone</h2>
+            {% if user.is_authenticated %}
+                <button style="background-color: #15d1a2; " class="btn btn-circle btn-lg mt-4 hand-writing"><i class="bi bi-plus">add new fact</i>
+                </button>
+            {% endif %}
+        </div>
         <div class="col-md-8">
             <div class="quote-container">
                 {% for fact in facts %}

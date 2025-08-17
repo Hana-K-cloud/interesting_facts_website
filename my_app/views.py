@@ -6,7 +6,7 @@ from.models import Fact
 
 # Create your views here.
 def home(request):
-    facts = Fact.objects.all()
+    facts = Fact.objects.all().order_by('-id')
     return render(request, 'my_app/index.html',{'facts':facts})
 
 
