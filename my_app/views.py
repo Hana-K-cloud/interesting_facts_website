@@ -1,13 +1,16 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+
 from .form import SignupForm
 from django.shortcuts import render, redirect
-from.models import Fact
+from .models import Fact
 
 
 # Create your views here.
 def home(request):
     facts = Fact.objects.all().order_by('-id')
-    return render(request, 'my_app/index.html',{'facts':facts})
+    return render(request, 'my_app/index.html', {'facts': facts})
 
 
 def signup(request):
@@ -26,9 +29,13 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 
-def saved_facts(request):
-    return render(request, 'my_app/saved_facts.html')
+def saved_facts(request, user):
+    user = get_object_or_404(User, username=user)
+    facts = Fact.objects.filter(user=user).order_by('-id')
+    return render(request, 'my_app/saved_facts.html', {'user': user,'facts':facts})
 
 
-def profile(request):
-    return render(request, 'my_app/profile.html')
+def profile(request, user):
+    facts = Fact.objects.all().order_by('-id')
+    my_user = User.objects.get(username=user)
+    return render(request, 'my_app/profile.html', {'my_user': my_user, 'facts': facts})

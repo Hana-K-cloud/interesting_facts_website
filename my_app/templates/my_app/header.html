@@ -12,8 +12,8 @@
                     {{ user.username }} <i class="bi bi-person-fill"></i>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="{% url 'profile' %}">my profile <i class="bi bi-person-circle"></i></a></li>
-                    <li><a class="dropdown-item" href="{% url 'saved_facts' %}">saved massages <i class="bi bi-bookmark-fill"></i></a></li>
+                    <li><a class="dropdown-item" href="profile/{{ user.username }}">my profile <i class="bi bi-person-circle"></i></a></li>
+                    <li><a class="dropdown-item" href="saved_facts/{{ user.username }}">saved massages <i class="bi bi-bookmark-fill"></i></a></li>
                     <li>
                         <form class="dropdown-item " method="post" action="{% url 'logout' %}">
                             {% csrf_token %}
