@@ -37,23 +37,25 @@ def saved_facts(request, user):
 
 
 def profile(request, user):
+    add_fact = AddFact()
     facts = Fact.objects.all().order_by('-id')
     my_user = User.objects.get(username=user)
-    return render(request, 'my_app/profile.html', {'my_user': my_user, 'facts': facts})
+    return render(request, 'my_app/profile.html', {'my_user': my_user, 'facts': facts, 'add_fact': add_fact})
 
 
 # add fact
-def add_fact(request, user):
-    user = get_object_or_404(User, id=user)
+def add_fact(request, id):
+    user = get_object_or_404(User, id=id)
     if request.method == 'POST':
-        fast = Fact.objects.create(
+        fact = Fact.objects.create(
             user=user,
-            title=request.POST['title'],
+            topic=request.POST['topic'],
             fact=request.POST['fact'],
         )
+
         data = {
             'user': user.username,
-            'title': request.POST['title'],
+            'topic': request.POST['topic'],
             'fact': request.POST['fact'],
         }
-    return JsonResponse()
+    return redirect('home')

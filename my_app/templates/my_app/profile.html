@@ -48,11 +48,46 @@
     <div class="row">
         <div class="col-md-4 hand-writing">
             <h2>we are here to learn super super fun facts about the world,fun hacks and ...</h2><br>
-            <h2>join us and share your own experience with everyone</h2></div>
+            <h2>join us and share your own experience with everyone</h2>
+            {% if user.is_authenticated %}
+                <button style="background-color: #15d1a2; " data-bs-toggle="modal" data-bs-target="#addFactModal"
+                        class="btn btn-circle btn-lg mt-4 hand-writing"><i class="bi bi-plus">add new fact</i>
+                </button>
+            {% endif %}
+            <!-- Modal -->
+            {% if user.is_authenticated %}
+                <div class="modal fade" id="addFactModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+                                <h4 class="modal-title"> add new fact</h4>
+                            </div>
+                            <div class="modal-body">
+                                <form method="post" id="#addFactForm" action="{% url 'add_fact' user.id %}">
+                                    {% csrf_token %}
+                                    <table class="table table-bordered">
+                                        {{ add_fact.as_table }}
+                                        <tr>
+                                            <td colspan="2">
+                                                <button type="submit" class="btn btn-primary">add fact</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
         <div class="col-md-8">
             <div class="quote-container">
                 {% for fact in facts %}
-                    {% if fact.user == my_user  %}
+                    {% if fact.user == my_user %}
                         <!---fact--->
                         <div class="quote-box">
                             <span class="quote-icon">{{ fact.topic }}</span>
