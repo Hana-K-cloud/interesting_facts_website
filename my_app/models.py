@@ -13,3 +13,11 @@ class Fact(models.Model):
 
     def __str__(self):
         return self.topic
+
+
+class SavedFact(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fact= models.ForeignKey(Fact, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.fact.topic} - {self.user.username}'

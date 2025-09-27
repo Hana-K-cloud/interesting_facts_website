@@ -9,4 +9,5 @@ urlpatterns = [
     path('saved_facts/<user>', views.saved_facts, name='saved_facts'),
     path('profile/<user>', views.profile, name='profile'),
     path('add_fact/<int:id>', views.add_fact, name='add_fact'),
+    path('add_to_save_fact/<int:id>/<int:f_id>', views.add_to_save_fact, name='add_to_save_fact'),
 ]

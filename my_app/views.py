@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from .forms import SignupForm, AddFact
 from django.shortcuts import render, redirect
-from .models import Fact
+from .models import Fact, SavedFact
 from django.http import JsonResponse
 
 
@@ -30,12 +30,6 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 
-def saved_facts(request, user):
-    user = get_object_or_404(User, username=user)
-    facts = Fact.objects.filter(user=user).order_by('-id')
-    return render(request, 'my_app/saved_facts.html', {'user': user, 'facts': facts})
-
-
 def profile(request, user):
     add_fact = AddFact()
     facts = Fact.objects.all().order_by('-id')
@@ -59,3 +53,19 @@ def add_fact(request, id):
             'fact': request.POST['fact'],
         }
     return redirect('home')
+
+
+def add_to_save_fact(request, id, f_id):
+    user = get_object_or_404(User, id=id)
+    fact = Fact.objects.get(id=f_id)
+    new_fact = SavedFact.objects.create(
+        user=user,
+        fact=fact,
+    )
+    return redirect('home')
+
+
+def saved_facts(request, user):
+    user = get_object_or_404(User, username=user)
+    s_facts = SavedFact.objects.filter(user=user).order_by('-id')
+    return render(request, 'my_app/saved_facts.html', {'user': user, 's_facts': s_facts})
